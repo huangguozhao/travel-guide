@@ -1,0 +1,10 @@
+# 统一使用 LF，避免在 Windows 上产生无意义的整文件差异
+* text=auto eol=lf
+
+# 明确二进制类型
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.pyc binary

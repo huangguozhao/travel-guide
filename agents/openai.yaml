@@ -1,0 +1,4 @@
+interface:
+  display_name: "旅游攻略"
+  short_description: "从出行条件分析、可信资料核验到手机电脑适配的单文件 HTML 攻略交付"
+  default_prompt: "请使用 $travel-guide，分析我的出行条件、核实交通和景点资料，制作可分享的详细 HTML 旅游攻略。"
