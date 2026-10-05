@@ -116,7 +116,7 @@ class Audit(HTMLParser):
             self.images += 1
             if "alt" not in a:
                 self.warnings.append("Image lacks alt text")
-            if not a.get("src") and not a.get("srcset"):
+            if not a.get("src") and not a.get("srcset") and "data-dynamic-image" not in a:
                 self.warnings.append("Image has no initial source; verify dynamic loading")
             self.image_data(a.get("src", ""))
         if tag in {"img", "script", "iframe", "audio", "video", "source", "track", "embed"}:

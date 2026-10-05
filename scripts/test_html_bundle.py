@@ -62,6 +62,10 @@ class BundleTests(unittest.TestCase):
         self.assertTrue(report["ok"])
         self.assertIn("Image has no initial source; verify dynamic loading", report["warnings"])
 
+        marked = MODULE.audit_text(PAGE.format('<img id="drawer-image" alt="Map" data-dynamic-image>'))
+        self.assertTrue(marked["ok"])
+        self.assertNotIn("Image has no initial source; verify dynamic loading", marked["warnings"])
+
     def test_refuses_unintentional_overwrite(self):
         with tempfile.TemporaryDirectory() as temp:
             target = Path(temp) / "output.html"

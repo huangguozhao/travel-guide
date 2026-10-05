@@ -130,9 +130,26 @@ def validate(data: Any, html_path: Path | None = None) -> dict[str, Any]:
         media_type = require_text(item, "type", where, errors)
         if media_type not in MEDIA_TYPES:
             errors.append(f"{where}.type must be one of {sorted(MEDIA_TYPES)}")
-        subject_id = require_text(item, "subject_stop_id", where, errors)
-        if subject_id and subject_id not in stop_by_id:
-            errors.append(f"{where}.subject_stop_id references unknown stop {subject_id}")
+        subject_id = item.get("subject_stop_id")
+        subject_ids = item.get("subject_stop_ids")
+        if subject_id and subject_ids:
+            errors.append(f"{where} must use subject_stop_id or subject_stop_ids, not both")
+        elif subject_id:
+            if not isinstance(subject_id, str):
+                errors.append(f"{where}.subject_stop_id must be non-empty text")
+            elif subject_id not in stop_by_id:
+                errors.append(f"{where}.subject_stop_id references unknown stop {subject_id}")
+        elif subject_ids:
+            if media_type == "photo":
+                errors.append(f"{where}.photo must use one subject_stop_id")
+            if not isinstance(subject_ids, list) or not subject_ids:
+                errors.append(f"{where}.subject_stop_ids must be a non-empty list")
+            else:
+                for stop_id in subject_ids:
+                    if not isinstance(stop_id, str) or stop_id not in stop_by_id:
+                        errors.append(f"{where}.subject_stop_ids references unknown stop {stop_id}")
+        else:
+            errors.append(f"{where} needs subject_stop_id or subject_stop_ids")
         require_text(item, "source_url", where, errors)
         require_text(item, "caption", where, errors)
         if not item.get("local_path") and not item.get("url"):

@@ -63,7 +63,7 @@ def valid_data(detail="rich"):
         "media": [
             {"id": "photo-a", "type": "photo", "subject_stop_id": "a", "subject_verified": True, "source_url": "https://example.com/a", "author": "x", "license": "CC", "usage": "压缩", "local_path": "a.jpg", "caption": "A"},
             {"id": "photo-b", "type": "photo", "subject_stop_id": "b", "subject_verified": True, "source_url": "https://example.com/b", "author": "x", "license": "CC", "usage": "压缩", "local_path": "b.jpg", "caption": "B"},
-            {"id": "map-a-b", "type": "map", "subject_stop_id": "a", "subject_verified": True, "source_url": "https://example.com/map", "local_path": "map.jpg", "caption": "路线"},
+            {"id": "map-a-b", "type": "map", "subject_stop_ids": ["a", "b"], "subject_verified": True, "source_url": "https://example.com/map", "local_path": "map.jpg", "caption": "路线"},
         ],
         "sources": [{"id": "src", "title": "来源", "url": "https://example.com", "accessed_on": "2026-10-05", "status": "verified"}],
         "fallbacks": [{"trigger": "下雨", "action": "缩短路线"}],

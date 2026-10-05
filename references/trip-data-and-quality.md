@@ -70,6 +70,14 @@
       "usage": "裁切并压缩",
       "local_path": "assets/old-town.jpg",
       "caption": "老街实景"
+    },
+    {
+      "id": "map-old-town-museum",
+      "type": "map",
+      "subject_stop_ids": ["old-town", "museum"],
+      "source_url": "https://example.org/route",
+      "local_path": "assets/route.jpg",
+      "caption": "老街至博物馆路线"
     }
   ],
   "sources": [
@@ -91,6 +99,8 @@
   ]
 }
 ```
+
+单一地点的照片和局部图用 `subject_stop_id`；跨多个地点的总览或路线图用 `subject_stop_ids`。二者只能出现一个。真实照片必须绑定一个明确地点，不能用多地点数组模糊主题核实。
 
 实际文件可以增加 `facts`、`food`、`facilities`、`budget`、`links`、`notes` 等字段；验证器忽略未知字段。不要复制同一事实到多个字段后分别维护。
 
