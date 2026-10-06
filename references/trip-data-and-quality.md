@@ -65,8 +65,8 @@
       "subject_stop_id": "old-town",
       "subject_verified": true,
       "source_url": "https://example.org/file-page",
-      "author": "作者",
-      "license": "CC BY-SA 4.0",
+      "source_platform": "公开图片页面",
+      "author": "页面显示的作者（若有）",
       "usage": "裁切并压缩",
       "local_path": "assets/old-town.jpg",
       "caption": "老街实景"
@@ -116,9 +116,9 @@
 
 `standard` 与 `rich` 的核心地点必须有 `summary / why_go / arrival / duration_min / leave_when / map_ref / source_ids`。HTML 中必须出现对应 `data-stop-id`。
 
-`rich` 还要求每个核心地点至少一个 `type: photo`、`subject_verified: true` 的媒体；媒体必须有原文件页、作者、许可 / 使用依据、修改说明和本地资产或稳定 URL。HTML 中必须出现相应 `data-media-id`。地图、插画和通用氛围照不计入实景覆盖。
+`rich` 还要求每个核心地点至少一个 `type: photo`、`subject_verified: true` 的媒体；媒体必须有原页面、图注和本地资产或稳定 URL。平台、作者、拍摄时间、修改说明和许可字段有则记录，但缺失不阻止覆盖通过。HTML 中必须出现相应 `data-media-id`。地图、插画和通用氛围照不计入实景覆盖。
 
-合法图片缺口不要伪装成合格媒体：将地点临时改为 `media_gap` 并在页面显示原因与原页面链接；在交付说明中报告未通过的 rich 门禁。默认不把不完整成品称为完整 `rich`。
+图片许可不明不是缺口，也不应触发“暂无可用授权实景图”。只有在公开来源中找不到能确认是该地点的真实照片时，才在页面显示图片缺口和建议搜索入口；默认不把地点错误的图片、通用氛围照或生成图算作合格实景媒体。
 
 ## 更新防缩水
 
@@ -133,5 +133,5 @@ python <skill-dir>/scripts/validate_trip_data.py trip-data.json --html final.htm
 python <skill-dir>/scripts/html_bundle.py audit final.html --report html-qa.json
 ```
 
-验证器证明字段、引用和覆盖关系，不证明事实真实、图片许可有效、路线安全或浏览器布局正确。浏览器验收仍必须执行。
+验证器证明字段、引用和覆盖关系，不证明事实真实、照片地点判断正确、路线安全或浏览器布局正确。浏览器验收仍必须执行。
 

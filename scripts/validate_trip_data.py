@@ -157,9 +157,6 @@ def validate(data: Any, html_path: Path | None = None) -> dict[str, Any]:
         if media_type == "photo":
             if item.get("subject_verified") is not True:
                 errors.append(f"{where}.subject_verified must be true for a real photo")
-            require_text(item, "author", where, errors)
-            require_text(item, "license", where, errors)
-            require_text(item, "usage", where, errors)
 
     orders: set[int] = set()
     core_ids: list[str] = []
@@ -319,7 +316,7 @@ def validate(data: Any, html_path: Path | None = None) -> dict[str, Any]:
             "sources": len(source_by_id),
         },
         "html_coverage": html_coverage,
-        "limits": "Structure and coverage only; facts, licenses, safety and browser layout require separate verification.",
+        "limits": "Structure and coverage only; facts, photo-subject accuracy, safety and browser layout require separate verification.",
     }
 
 
