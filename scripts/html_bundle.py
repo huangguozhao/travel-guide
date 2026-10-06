@@ -175,7 +175,7 @@ class Audit(HTMLParser):
         return {"ok": not self.errors, "errors": sorted(set(self.errors)),
                 "warnings": sorted(set(self.warnings)), "images": self.images,
                 "embedded_images": self.embedded_images,
-                "limits": "Static structure only; facts, licenses, JS, layout and dynamic requests need separate verification."}
+                "limits": "Static structure only; facts, photo-subject accuracy, JS, layout and dynamic requests need separate verification."}
 
 
 def audit_text(text):
